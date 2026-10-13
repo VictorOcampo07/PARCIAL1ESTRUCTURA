@@ -1,3 +1,5 @@
+import java.util.Comparator;
+
 public class CompararPorTiempoEstimado implements Comparator<Paquete> {
 
     @Override

@@ -7,5 +7,3 @@ interface Coleccion<T> extends Iterable<T> {
     boolean estaVacia();
 
 }
-///hola mundo
-/// hola

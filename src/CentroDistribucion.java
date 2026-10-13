@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class CentroDistribucion {
+public static class CentroDistribucion {
 
     private final Map<String, Paquete> mapaPaquetes = new HashMap<>();
     private final List<Paquete> listaOrdenLlegada = new ArrayList<>();
@@ -82,4 +82,41 @@ public class CentroDistribucion {
         }
         return null;
     }
+}
+public static void main(String[] args) {
+    CentroDistribucion centro= new CentroDistribucion();
+    // 1. Registro de Repartidores (Mínimo 6)
+    centro.registrarRepartidor(new Repartidor("R01", "Carlos Pérez", "Armenia", true));
+    centro.registrarRepartidor(new Repartidor("R02", "Ana Gómez", "Salento", true));
+    centro.registrarRepartidor(new Repartidor("R03", "Luis Díaz", "Calarcá", true));
+    centro.registrarRepartidor(new Repartidor("R04", "Marta Ríos", "Circasia", false));
+    centro.registrarRepartidor(new Repartidor("R05", "Jorge Torres", "Montenegro", true));
+    centro.registrarRepartidor(new Repartidor("R06", "Sofia López", "Armenia", true));
+
+    // 2. Registro de Paquetes (Mínimo 30, no consecutivos, 5 destinos)
+    String[] municipios = {"Armenia", "Salento", "Calarcá", "Circasia", "Montenegro"};
+    Random rng = new Random(42);
+
+    for (int i = 1; i <= 30; i++) {
+        String cod = "PQ" + (100 + rng.nextInt(800));
+        while (centro.buscarPorCodigo(cod) != null) {
+            cod = "PQ" + (100 + rng.nextInt(800));
+        }
+        String dest = municipios[i % municipios.length];
+        double peso = Math.round((1.0 + rng.nextDouble() * 15.0) * 10.0) / 10.0;
+        int prio = 1 + rng.nextInt(5);
+        int tiempo = 15 + rng.nextInt(60);
+
+        centro.registrarPaquete(new Paquete(cod, dest, peso, prio, tiempo));
+    }
+
+    System.out.println("=== QUINDÍOEXPRESS - PRUEBAS DE OPERACIÓN ===");
+    System.out.println("Total paquetes registrados: " + centro.listaOrdenLlegada.size());
+
+    // Test Recursividad
+    double pesoArmenia = centro.pesoTotalMunicipioRecursivo(centro.listaOrdenLlegada, "Armenia", 0);
+    System.out.printf("\n[RECURSIVIDAD] Peso total para Armenia: %.1f kg\n", pesoArmenia);
+
+    int deAltaPrio = centro.contarPorPrioridadMinimaRecursivo(centro.listaOrdenLlegada, 4, 0);
+    System.out.println("[RECURSIVIDAD] Paquetes con prioridad >= 4: " + deAltaPrio);
 }

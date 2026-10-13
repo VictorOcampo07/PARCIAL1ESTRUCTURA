@@ -1,4 +1,6 @@
-public class ComparadorPorPrioridad implements Comparator<Paquete> {
+import java.util.Comparator;
+
+public class ComparadorPorPrioridad implements Comparator<Repartidor> {
 
     @Override 
     public int compare(Paquete p1, Paquete p2) {
