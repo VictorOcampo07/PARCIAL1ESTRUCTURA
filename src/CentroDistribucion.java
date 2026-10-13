@@ -119,4 +119,27 @@ public static void main(String[] args) {
 
     int deAltaPrio = centro.contarPorPrioridadMinimaRecursivo(centro.listaOrdenLlegada, 4, 0);
     System.out.println("[RECURSIVIDAD] Paquetes con prioridad >= 4: " + deAltaPrio);
-}
+
+    //Test Divide y Vencerás
+    Paquete masPesado = centro.paqueteMayorPesoDyV(centro.listaOrdenLlegada, 0, centro.listaOrdenLlegada.size() - 1);
+    System.out.println("\n[DIVIDE Y VENCERÁS] Paquete más pesado: " + masPesado);
+
+    // Test Búsqueda Binaria
+    List<Paquete> ordenados = new ArrayList<>(centro.listaOrdenLlegada);
+    Collections.sort(ordenados);
+    String codBuscar = ordenados.get(5).getCodigo();
+    Paquete hallado = centro.busquedaBinariaPorCodigo(ordenados, codBuscar);
+    System.out.println("\n[BÚSQUEDA BINARIA] Buscando " + codBuscar + " -> Hallado: " + hallado);
+
+    // Test Historial con Lista Propia e Iterator
+    System.out.println("\n[HISTORIAL DE ENTREGAS] Procesando primeras 3 entregas:");
+    for (int i = 0; i < 3; i++) {
+            Paquete p = centro.colaPrioridad.poll();
+            centro.registrarEntrega(p);
+        }
+
+        System.out.println("Recorriendo historial con Iterable/Iterator:");
+        for (Paquete entregado : centro.historialEntregas) {
+            System.out.println(" -> Entregado: " + entregado);
+        }
+    }

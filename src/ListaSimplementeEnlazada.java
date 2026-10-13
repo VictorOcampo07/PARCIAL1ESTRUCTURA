@@ -29,10 +29,10 @@ public class ListaSimplementeEnlazada<T> implements Coleccion<T> {
             cabeza = nuevoNodo;
         } else {
             Nodo<T> actual = cabeza;
-            while (actual.siguiente() != null) {
-                actual = actual.siguiente();
+            while (actual.siguiente != null) {
+                actual = actual.siguiente;
             }
-            actual.siguiente(nuevoNodo);
+            actual.siguiente = nuevoNodo;
         }
         tamanio++;
     }
@@ -41,19 +41,20 @@ public class ListaSimplementeEnlazada<T> implements Coleccion<T> {
     public boolean eliminar(T elemento) {
         if (estaVacia()) 
             return false;
-        
+        //si el elemento a eliminar es la cabeza
         if (Objects.equals(cabeza.valor, elemento)) {
-            cabeza = cabeza.siguiente();
+            cabeza = cabeza.siguiente;
             tamanio--;
             return true;
         }
-
+        //avanzar mientras el siguiente nodo no sea nulo y no sea el elemento a eliminar
         Nodo<T> actual = cabeza;
-        while (actual.siguiente() != null && Objects.equals(actual.siguiente().valor(), elemento)) {
-            actual = actual.siguiente();
+        while (actual.siguiente != null && Objects.equals(actual.siguiente.valor, elemento)) {
+            actual = actual.siguiente;
         }
-        if (actual.siguiente() != null) {
-            actual.siguiente = (actual.siguiente().siguiente());
+        //si encontramos el elemento a eliminar
+        if (actual.siguiente != null) {
+            actual.siguiente = actual.siguiente.siguiente;
             tamanio--;
             return true;
         }
@@ -67,9 +68,9 @@ public class ListaSimplementeEnlazada<T> implements Coleccion<T> {
         }
         Nodo<T> actual = cabeza;
         for (int i = 0; i < indice; i++) {
-            temp = temp.siguiente();
+            actual = actual.siguiente;
         }
-        return temp.valor();
+        return actual.valor;
     }
 
     @Override
