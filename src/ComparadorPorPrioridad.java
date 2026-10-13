@@ -1,4 +1,4 @@
-public class ComparadorPorPrioridad implements Comparador<epartidor> {
+public class ComparadorPorPrioridad implements Comparator<Paquete> {
 
     @Override 
     public int compare(Paquete p1, Paquete p2) {

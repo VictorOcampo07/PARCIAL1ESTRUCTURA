@@ -1,4 +1,4 @@
-public class CompararPorPeso implements Comparador<Paquete> {
+public class CompararPorPeso implements Comparator<Paquete> {
 
     @Override
     public int compare(Paquete p1, Paquete p2) {

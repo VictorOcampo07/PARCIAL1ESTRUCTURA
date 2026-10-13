@@ -1,4 +1,4 @@
-public class CompararPorTiempoEstimado implements Comparador<Paquete> {
+public class CompararPorTiempoEstimado implements Comparator<Paquete> {
 
     @Override
     public int compare(Paquete p1, Paquete p2) {
