@@ -8,14 +8,14 @@ public class Paquete implements Comparable<Paquete>{
     private final int tiempoEstimado;
 
     public Paquete(String codigo, String destino, double peso, int prioridad, int tiempoEstimado) {
-        if (codigo == null || codigo.trim().isEmpty()) throw new IllegalArgumentException("Código inválido");
-        if (destino == null || destino.trim().isEmpty()) throw new IllegalArgumentException("Destino inválido");
+        if (codigo == null || codigo.trim().isEmpty()) throw new IllegalArgumentException("Código inválido, no puede ser nulo o vacío");
+        if (destino == null || destino.trim().isEmpty()) throw new IllegalArgumentException("Destino inválido, no puede ser nulo o vacío");
         if (peso <= 0) throw new IllegalArgumentException("Peso debe ser > 0");
         if (prioridad < 1 || prioridad > 5) throw new IllegalArgumentException("Prioridad debe estar entre 1 y 5");
         if (tiempoEstimado <= 0) throw new IllegalArgumentException("Tiempo estimado debe ser > 0");
 
-        this.codigo = codigo;
-        this.destino = destino;
+        this.codigo = codigo.toUpperCase().trim();
+        this.destino = destino.trim();
         this.peso = peso;
         this.prioridad = prioridad;
         this.tiempoEstimado = tiempoEstimado;
@@ -47,7 +47,8 @@ public class Paquete implements Comparable<Paquete>{
 
     @Override
     public String toString() {
-        return String.format("[%s | %s | %.1fkg | P:%d | %dmin]", codigo, destino, peso, prioridad, tiempoEstimado);
+       return String.format("[%s | Destino: %-10s | Peso: %4.1fkg | Prio: %d | Tiempo: %2dmin]", 
+                codigo, destino, peso, prioridad, tiempoEstimado);
     }
 }
 
