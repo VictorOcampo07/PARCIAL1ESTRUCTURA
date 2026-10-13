@@ -5,5 +5,6 @@ interface Coleccion<T> extends Iterable<T> {
     T obtener(int indice);
     int tamanio();
     boolean estaVacia();
-    
+
 }
+///hola mundo
