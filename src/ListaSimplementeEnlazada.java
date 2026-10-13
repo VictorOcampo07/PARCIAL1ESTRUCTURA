@@ -1,4 +1,6 @@
-
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.Objects;
 
 public class ListaSimplementeEnlazada<T> implements Coleccion<T> {
     
