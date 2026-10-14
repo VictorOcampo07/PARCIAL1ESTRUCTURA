@@ -297,7 +297,7 @@ public static void main(String[] args) {
                     break;
 
                 default:
-                    System.out.println("⚠️ Opción no reconocida.");
+                    System.out.println(" Opción no reconocida.");
             }
         }
         scanner.close();

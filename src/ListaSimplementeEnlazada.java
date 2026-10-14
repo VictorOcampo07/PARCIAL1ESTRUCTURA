@@ -49,7 +49,7 @@ public class ListaSimplementeEnlazada<T> implements Coleccion<T> {
         }
         //avanzar mientras el siguiente nodo no sea nulo y no sea el elemento a eliminar
         Nodo<T> actual = cabeza;
-        while (actual.siguiente != null && Objects.equals(actual.siguiente.valor, elemento)) {
+        while (actual.siguiente != null && !Objects.equals(actual.siguiente.valor, elemento)) {
             actual = actual.siguiente;
         }
         //si encontramos el elemento a eliminar
